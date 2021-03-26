@@ -1,0 +1,39 @@
+/* Tables Used:
+	a. Author-> Author table stores all the data about the authors.
+	b. BlogDetail-> BlogDetail table stores all the data
+	c.  BlogComments-> BlogComments table is used to store comments for the blog. */
+
+create table Author
+{
+	AuthorId int NOT NULL Primary Key IDENTITY(1,1),	
+	FirstName varchar(50),	
+	MiddleName varchar(50),	
+	LastName varchar(50),	
+	Mobile varchar(15),--Depends on Country	
+	Email varchar(30),
+	CreatedDate DATETIME, 	
+	Profile varchar(max)
+}
+
+create table BlogDetail
+{
+	BlogId 	int NOT NULL Primary Key IDENTITY(1,1),  
+	AuthorId  int,
+	ParentPostId int,	
+	Title 	varchar(max),
+	Summary varchar(max),
+	CreatedDate DATETIME,	
+	CreatedBy int,
+	ModifiedDate DATETIME,	
+	ModifiedBy int,
+	Content	varchar(max)
+}
+
+create table BlogComments
+{
+	CommentId int NOT NULL Primary Key IDENTITY(1,1),	
+	BlogId  int,
+	Title 	varchar(max),
+	CreatedDate 	DATETIME,
+	Content varchar(max)
+}

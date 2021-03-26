@@ -1,0 +1,86 @@
+--SP_SaveBlogDetail--
+
+CREATE PROCEDURE SP_SaveBlogDetail
+{
+@BlogId int,
+@AuthorId int,
+@ParentPostId int,
+@Title varchar(max),
+@Summary varchar(max),
+@CreatedDate DATETIME,
+@CreatedBy int, 
+@ModifiedDate DATETIME,
+@ModifiedBy int,
+@Content varchar(max)
+}
+AS
+begin
+
+insert into BlogDetail(BlogId,  
+	AuthorId,
+	ParentPostId 
+	Title,
+	Summary,
+	CreatedDate,	
+	CreatedBy,
+	ModifiedDate,	
+	ModifiedBy
+	Content)
+ values(@BlogId,
+	@AuthorId,
+	@ParentPostId,
+	@Title,
+	@Summary,
+	@CreatedDate,
+	@CreatedBy,
+	@ModifiedDate,
+	@ModifiedBy,
+	@Content)	
+end
+GO;
+
+
+-----SP_SaveBlogDetail--
+
+CREATE PROCEDURE SP_DeleteBlog
+{
+@BlogId int,
+@AuthorId int
+}
+AS
+begin
+
+Delete from BlogDetail where BlogId=@BlogId and AuthorId=@AuthorId	
+end
+GO;
+
+
+
+-----SP_GetBlogLists----
+
+CREATE PROCEDURE SP_GetBlogLists
+{
+@AuthorId int
+}
+AS
+begin
+
+select * from BlogDetail where AuthorId=@AuthorId	
+end
+GO;
+
+
+
+-----SP_GetBlogLists----
+
+CREATE PROCEDURE SP_GetBlogDetail
+{
+@BlogId  int,
+@AuthorId int
+}
+AS
+begin
+
+select * from BlogDetail where AuthorId=@AuthorId and BlogId=@BlogId 	
+end
+GO;
